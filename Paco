@@ -1,0 +1,47 @@
+--Creación de tabla
+CREATE TABLE la_crimes (
+	DR_NO BIGINT,
+	"Date Rptd" TEXT,
+	"DATE OCC" TEXT,
+	"TIME OCC" BIGINT,
+	AREA BIGINT,
+	"AREA NAME" TEXT,
+	"Rpt Dist No" BIGINT,
+	"Part 1-2" BIGINT,
+	"Crm Cd" BIGINT,
+	"Crm Cd Desc" TEXT,
+	Mocodes TEXT,
+	VictAge BIGINT,
+	VictSex TEXT,
+	VictDescent TEXT,
+	"Premis Cd" BIGINT,
+	"Premis Desc" TEXT,
+	"Weapon Used Cd" TEXT,
+	"Weapon Desc" TEXT,
+	Status TEXT,
+	"Status Desc" TEXT,
+	"Crm Cd 1" BIGINT,
+	"Crm Cd 2" BIGINT,
+	"Crm Cd 3" BIGINT,
+	"Crm Cd 4" BIGINT,
+	LOCATION TEXT,
+	"Cross Street" TEXT,
+	LAT FLOAT,
+	LON FLOAT)
+
+--Carga de datos 
+\copy la_crimes (DR_NO,"Date Rptd","DATE OCC","TIME OCC",AREA,"AREA NAME","Rpt Dist No","Part 1-2" ,"Crm Cd","Crm Cd Desc",Mocodes,VictAge,VictSex,VictDescent,"Premis Cd","Premis Desc","Weapon Used Cd","Weapon Desc",Status,"Status Desc","Crm Cd 1","Crm Cd 2","Crm Cd 3","Crm Cd 4",LOCATION,"Cross Street",LAT,LON) FROM 'C:\Users\pacoc\Escritorio\Proyecto Bases\Crime_Data_from_2020_to_Present.csv' WITH (FORMAT CSV, HEADER true, DELIMITER ',');
+
+-- Consulta de datos iniciales
+SELECT * FROM la_crimes;
+
+SELECT  DISTINCT "Crm Cd Desc" FROM la_crimes;
+
+SELECT  DISTINCT "AREA NAME" FROM la_crimes;
+
+SELECT * FROM la_crimes 
+	WHERE "Crm Cd Desc"= 'BIGAMY';
+	
+SELECT "AREA NAME", COUNT("AREA NAME") FROM la_crimes
+	GROUP BY "AREA NAME"
+	ORDER BY COUNT("AREA NAME");
